@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int f(int n){
+    int num = 1;
+    while(n--){
+        num*=10;
+    }
+    return num;
+}
+int main(){
+    int t; cin>>t;
+    while(t--){
+        int num;cin>>num;
+        int n=0, temp=num;
+        while(temp!=0){
+            n++;
+            temp=temp/10;
+        }
+        n--;
+        int cnt = 0;
+        vector<int> ans;
+        while(num!=0){
+            int dig = num/(f(n));
+            num = num%(f(n));
+            if(dig!=0){
+                cnt++;
+                int no = dig * (f(n));
+                ans.push_back(no);
+            }
+            n--;
+        }
+        cout<<cnt<<endl;
+        for(int i=0; i<ans.size(); i++){
+            if(i==(ans.size()-1)){
+                cout<<ans[i]<<endl;
+            }
+            else{
+                cout<<ans[i]<<" ";
+            }
+        }
+        
+    }
+    return 0;
+}
